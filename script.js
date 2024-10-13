@@ -64,12 +64,12 @@ function initMap() {
     new google.maps.Marker({
         position: { lat: 13.351541, lng: 74.791273 },
         map: map,
-        title: "Parking 9"
+        title: "Parking 10"
     });
 
     new google.maps.Marker({
         position: { lat: 13.351544, lng: 74.791364 },
         map: map,
-        title: "Parking 10"
+        title: "Parking 11"
     });
 }
