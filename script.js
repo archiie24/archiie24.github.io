@@ -8,37 +8,37 @@ function initMap() {
     });
 
     new google.maps.Marker({
-        position: { lat: 13.3520398, lng: 74.791274 },
+        position: { lat: 13.352453, lng: 74.791403 },
         map: map,
         title: "Parking 1"
     });
 
     new google.maps.Marker({
-        position: { lat: 13.3520150, lng: 74.7913036 },
+        position: { lat: 13.352414, lng: 74.791417 },
         map: map,
         title: "Parking 2"
     });
 
     new google.maps.Marker({
-        position: { lat: 13.3519556, lng: 74.7913324 },
+        position: { lat: 13.352379, lng: 74.791427 },
         map: map,
         title: "Parking 3"
     });
 
     new google.maps.Marker({
-        position: { lat: 13.3518509, lng: 74.7912094 },
+        position: { lat: 13.352337, lng: 74.791440 },
         map: map,
         title: "Parking 4"
     });
 
     new google.maps.Marker({
-        position: { lat: 13.3518989, lng: 74.7913267 },
+        position: { lat: 13.352295, lng: 74.791455 },
         map: map,
         title: "Parking 5"
     });
 
     new google.maps.Marker({
-        position: { lat: 13.3519002, lng: 74.7912804 },
+        position: { lat: 13.352246, lng: 74.791470 },
         map: map,
         title: "Parking 6"
     });
