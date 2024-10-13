@@ -54,4 +54,22 @@ function initMap() {
         map: map,
         title: "Parking 8"
     });
+
+    new google.maps.Marker({
+        position: { lat: 13.351535, lng: 74.791228 },
+        map: map,
+        title: "Parking 9"
+    });
+
+    new google.maps.Marker({
+        position: { lat: 13.351541, lng: 74.791273 },
+        map: map,
+        title: "Parking 9"
+    });
+
+    new google.maps.Marker({
+        position: { lat: 13.351544, lng: 74.791364 },
+        map: map,
+        title: "Parking 10"
+    });
 }
