@@ -72,4 +72,58 @@ function initMap() {
         map: map,
         title: "Parking 11"
     });
+
+    new google.maps.Marker({
+        position: { lat: 13.352140, lng: 74.791253 },
+        map: map,
+        title: "Parking 12"
+    });
+
+    new google.maps.Marker({
+        position: { lat: 13.352090, lng: 74.791265 },
+        map: map,
+        title: "Parking 13"
+    });
+
+    new google.maps.Marker({
+        position: { lat: 13.352036, lng: 74.791282 },
+        map: map,
+        title: "Parking 14"
+    });
+
+    new google.maps.Marker({
+        position: { lat: 13.352050, lng: 74.791334 },
+        map: map,
+        title: "Parking 15"
+    });
+
+    new google.maps.Marker({
+        position: { lat: 13.352066, lng: 74.791389 },
+        map: map,
+        title: "Parking 16"
+    });
+
+    new google.maps.Marker({
+        position: { lat: 13.352077, lng: 74.791429 },
+        map: map,
+        title: "Parking 17"
+    });
+
+    new google.maps.Marker({
+        position: { lat: 13.352096, lng: 74.791494 },
+        map: map,
+        title: "Parking 18"
+    });
+
+    new google.maps.Marker({
+        position: { lat: 13.352142, lng: 74.791484 },
+        map: map,
+        title: "Parking 19"
+    });
+
+    new google.maps.Marker({
+        position: { lat: 13.352181, lng: 74.791475 },
+        map: map,
+        title: "Parking 20"
+    });
 }
