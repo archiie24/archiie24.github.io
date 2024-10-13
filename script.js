@@ -44,31 +44,31 @@ function initMap() {
     });
     
     new google.maps.Marker({
-        position: { lat: 13.3514447, lng: 74.7910974 },
+        position: { lat: 13.352362, lng: 74.791189 },
         map: map,
         title: "Parking 7"
     });
 
     new google.maps.Marker({
-        position: { lat: 13.351415, lng: 74.791129 },
+        position: { lat: 13.352316, lng: 74.791202 },
         map: map,
         title: "Parking 8"
     });
 
     new google.maps.Marker({
-        position: { lat: 13.351535, lng: 74.791228 },
+        position: { lat: 13.352272, lng: 74.791218 },
         map: map,
         title: "Parking 9"
     });
 
     new google.maps.Marker({
-        position: { lat: 13.351541, lng: 74.791273 },
+        position: { lat: 13.352227, lng: 74.791230 },
         map: map,
         title: "Parking 10"
     });
 
     new google.maps.Marker({
-        position: { lat: 13.351544, lng: 74.791364 },
+        position: { lat: 13.352181, lng: 74.791246 },
         map: map,
         title: "Parking 11"
     });
