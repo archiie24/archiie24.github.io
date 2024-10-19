@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Parking MIT</title>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-database.js"></script>
+
     <link rel="stylesheet" href="style.css">
     <style>
         body {
@@ -21,11 +25,75 @@
             border: 1px solid #ccc; /* Optional: add a border to the map */
         }
     </style>
+
+    <script type="module">
+        // Import the functions you need from the SDKs
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-analytics.js";
+        import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-database.js";
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyCPyFhg4iTFdDh_yQ8SBTINoXGr3pWAImw",
+            authDomain: "guest-parking-dba5c.firebaseapp.com",
+            databaseURL: "https://guest-parking-dba5c-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "guest-parking-dba5c",
+            storageBucket: "guest-parking-dba5c.appspot.com",
+            messagingSenderId: "459973834325",
+            appId: "1:459973834325:web:f0d9c3edb0e24f2f3506dc",
+            measurementId: "G-B537J4XLYH"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        const database = getDatabase(app);
+
+        // Function to fetch data from Firebase
+        function fetchData() {
+            const dbRef = ref(database, 'parking_spots/');
+            onValue(dbRef, (snapshot) => {
+                const data = snapshot.val();
+                const table = document.getElementById('data-table');
+
+                // Clear existing rows
+                table.innerHTML = '<tr><th>Parking Spot</th><th>Availability</th></tr>';
+
+                // Loop through data and add rows
+                for (const key in data) {
+                    const row = document.createElement('tr');
+                    const col1 = document.createElement('td');
+                    const col2 = document.createElement('td');
+
+                    col1.textContent = key; // Spot key (e.g., 'spot1')
+                    col2.textContent = data[key] ? "Available" : "Not Available"; // Availability status
+
+                    row.appendChild(col1);
+                    row.appendChild(col2);
+                    table.appendChild(row);
+                }
+            });
+        }
+
+        // Call fetchData on page load
+        window.onload = fetchData;
+    </script>
+
 </head>
 <body>
     <h1>MIT Parking</h1>
+    <p1>Welcome to MIT! EasyPark is here to make your parking experience better!</p1>
+    <br></br>
     <div id="map"></div>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAE02FK7JNFqbEtmrv_I2GvV4gQTuFYn1U&callback=initMap" async defer></script>
     <script src="script.js"></script>
+
+    <h2>Availability</h2>
+    <table id="data-table">
+        <tr>
+            <th>Parking Spot</th>
+            <th>Availability</th>
+        </tr>
+    </table>
 </body>
 </html>
