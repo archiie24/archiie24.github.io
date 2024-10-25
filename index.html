@@ -3,36 +3,100 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Parking MIT</title>
+    <title>EazyPark</title>
     <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-analytics.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-database.js"></script>
-
+    <link href="https://fonts.googleapis.com/css2?family=LXGW+WenKai+TC&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+
     <style>
-        body {
+        html, body {
+            height: 100%;
+            margin: 0;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            margin: 0;
-            text-align: center;
+        }
+
+        body {
+            background-color: rgb(150, 150, 219);
+            font-family: 'LXGW WenKai TC', sans-serif;
+            padding-top: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            max-width: 1000px;
+            height: 80vh; /* Adjusts height allocation between map and table */
+            flex-grow: 1;
+            overflow: hidden; /* Prevents table from pushing the map */
         }
 
         #map {
-            width: 80%; /* Adjust as needed */
-            height: 400px; /* Set the height of the map */
-            border: 1px solid #ccc; /* Optional: add a border to the map */
+            width: 100%;
+            height: 100%;
+            flex-grow: 1; /* Makes the map take available vertical space */
+            border: 1px solid #ccc;
+        }
+
+        .table-container {
+            width: 100%;
+            max-width: 1000px;
+            overflow-y: auto; /* Allows table to scroll if it grows too large */
+            margin-top: 10px;
+            margin-bottom: 20px;
+        }
+
+        .image-container, .robot-animation {
+            text-align: center;
+        }
+
+        .small-image {
+            width: 90px;
+            height: auto;
+            border-radius: 80%;
+            border: 2px solid #ccc;
+        }
+
+        .robot-animation {
+            margin-top: 20px;
+        }
+
+        .robot {
+            width: 180px;
+            height: auto;
+            animation: bounce 1s infinite;
+        }
+
+        .text {
+            font-size: 24px;
+            margin-top: 10px;
+            opacity: 0;
+            animation: fadeIn 2s forwards;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-20px); }
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
         }
     </style>
 
     <script type="module">
-        // Import the functions you need from the SDKs
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js";
         import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-analytics.js";
         import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-database.js";
 
-        // Your web app's Firebase configuration
         const firebaseConfig = {
             apiKey: "AIzaSyCPyFhg4iTFdDh_yQ8SBTINoXGr3pWAImw",
             authDomain: "guest-parking-dba5c.firebaseapp.com",
@@ -44,29 +108,24 @@
             measurementId: "G-B537J4XLYH"
         };
 
-        // Initialize Firebase
         const app = initializeApp(firebaseConfig);
         const analytics = getAnalytics(app);
         const database = getDatabase(app);
 
-        // Function to fetch data from Firebase
         function fetchData() {
             const dbRef = ref(database, 'parking_spots/');
             onValue(dbRef, (snapshot) => {
                 const data = snapshot.val();
                 const table = document.getElementById('data-table');
-
-                // Clear existing rows
                 table.innerHTML = '<tr><th>Parking Spot</th><th>Availability</th></tr>';
 
-                // Loop through data and add rows
                 for (const key in data) {
                     const row = document.createElement('tr');
                     const col1 = document.createElement('td');
                     const col2 = document.createElement('td');
 
-                    col1.textContent = key; // Spot key (e.g., 'spot1')
-                    col2.textContent = data[key] ? "Available" : "Not Available"; // Availability status
+                    col1.textContent = key;
+                    col2.textContent = data[key] ? "Available" : "Not Available";
 
                     row.appendChild(col1);
                     row.appendChild(col2);
@@ -75,25 +134,53 @@
             });
         }
 
-        // Call fetchData on page load
         window.onload = fetchData;
     </script>
-
 </head>
 <body>
-    <h1>MIT Parking</h1>
-    <p1>Welcome to MIT! EasyPark is here to make your parking experience better!</p1>
-    <br></br>
-    <div id="map"></div>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAE02FK7JNFqbEtmrv_I2GvV4gQTuFYn1U&callback=initMap" async defer></script>
-    <script src="script.js"></script>
+    <div class="image-container">
+        <img src="logo.jpg" alt="logo" class="small-image">
+    </div>
 
-    <h2>Availability</h2>
-    <table id="data-table">
-        <tr>
-            <th>Parking Spot</th>
-            <th>Availability</th>
-        </tr>
-    </table>
+    <div class="robot-animation">
+        <img src="robo.png" alt="robot" class="robot">
+        <div class="text" id="robotText">Welcome to MIT! EazyPark is here to make your parking experience hassle-free!!</div>
+    </div>
+
+    <div class="container">
+        <div id="map"></div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAE02FK7JNFqbEtmrv_I2GvV4gQTuFYn1U&callback=initMap" async defer></script>
+
+    <div class="table-container">
+        <h2>Availability</h2>
+        <table id="data-table">
+            <tr>
+                <th>Parking Spot</th>
+                <th>Availability</th>
+            </tr>
+        </table>
+    </div>
+    
+    <script>
+        let map;
+
+        function initMap() {
+            map = new google.maps.Map(document.getElementById('map'), {
+                center: { lat: 13.352, lng: 74.792 },
+                zoom: 18,
+                mapId: 'd69f3b80d78a361e'
+            });
+            google.maps.event.addListenerOnce(map, 'idle', function () {
+                google.maps.event.trigger(map, 'resize');
+            });
+        }
+
+        window.addEventListener('resize', function () {
+            google.maps.event.trigger(map, 'resize');
+        });
+    </script>
 </body>
 </html>
